@@ -25,11 +25,12 @@ def avg(x):
 
     for row in x[1:]:
         name = row[0]
-        sales = map(int, row[1:])
-        total[name] = sum(sales)/30
-    
-    return total
+        sales = list(map(int, row[1:]))
+        #len counts number of values so u dont gotta say 30
+        total[name] = sum(sales)/len(sales)
+    sorted_total = dict(sorted(total.items(), key=lambda item: item[1], reverse = True))
+    return sorted_total
+   # return total
 
-allavg = avg(data)
-
-print(allavg)
+all_avg = avg(data)
+print(all_avg)
