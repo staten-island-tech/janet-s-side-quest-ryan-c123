@@ -20,17 +20,26 @@ def csv_to_list(file_path):
 file_path = "SalesData.csv"  
 data = csv_to_list(file_path)
 #print(data)  # Output the list
+total = {}
 def avg(x):
-    total = {}
 
     for row in x[1:]:
         name = row[0]
         sales = list(map(int, row[1:]))
         #len counts number of values so u dont gotta say 30
         total[name] = sum(sales)/len(sales)
-    sorted_total = dict(sorted(total.items(), key=lambda item: item[1], reverse = True))
-    return sorted_total
-   # return total
-
-all_avg = avg(data)
-print(all_avg)
+avg(data)
+def sort_avg(x):
+     #uses lambda and sorted to sort each value from least to greatest, reverse makes it greatest to least
+    return dict(sorted(x.items(), key=lambda item: item[1], reverse = True))
+#print(total)
+#print(sort_avg(total))
+#print(every_avg)
+fat = sum(total.values())
+many = len(total)
+every_avg = fat/many
+uh_oh = {}
+for x, y in total.items():
+    if y < every_avg*0.8:
+        uh_oh[x] = y
+print(f"these stores are in danger of closing: {uh_oh}")
